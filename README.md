@@ -18,8 +18,8 @@ spotlight/
 │   │   └── assets/          # Images, icons, fonts
 │   ├── public/              # Static assets
 │   ├── package.json
-│   ├── next.config.js
-│   ├── tailwind.config.js
+│   ├── next.config.ts
+│   ├── tailwind.config.ts
 │   └── Dockerfile
 ├── backend/                  # Express.js backend API
 │   ├── src/
