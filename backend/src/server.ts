@@ -1,11 +1,13 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-require('dotenv').config();
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT: number = parseInt(process.env.PORT || '3001', 10);
 
 // Middleware
 app.use(helmet());
@@ -15,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.json({ 
     message: 'Spotlight API is running!',
     version: '1.0.0',
@@ -23,7 +25,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (req: Request, res: Response) => {
   res.json({ 
     status: 'healthy',
     timestamp: new Date().toISOString()
@@ -31,7 +33,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).json({ 
     message: 'Something went wrong!',
@@ -40,7 +42,7 @@ app.use((err, req, res, next) => {
 });
 
 // 404 handler
-app.use('*', (req, res) => {
+app.use('*', (req: Request, res: Response) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
