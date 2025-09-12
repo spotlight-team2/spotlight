@@ -1,9 +1,6 @@
-import { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  experimental: {
-    appDir: true,
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'standalone',
   images: {
     domains: ['localhost'],
   },
@@ -12,4 +9,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
